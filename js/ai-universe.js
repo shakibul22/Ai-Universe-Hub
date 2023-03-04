@@ -1,20 +1,21 @@
 
 let allData;
-const loadAllData= () => {
+const loadAllData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
-        .then(data =>{
-            allData=data;
-            displayAllTools(data.data.tools.slice(0,6));
+        .then(data => {
+            allData = data;
+            showData(data.data.tools.slice(0, 6));
         });
 };
-const displayAllTools = tools => {
+const showData = data => {
+    console.log(data)
+    const toolsContainer = document.getElementById('cardContainer');
 
-    const toolsContainer = document.getElementById('tools-container');
+    toolsContainer.innerText = '';
+    data.forEach(tool => {
 
-    toolsContainer.innerText='';
-    tools.forEach(tool => {
         const toolDiv = document.createElement('div');
         toolDiv.classList.add('col');
         toolDiv.innerHTML = `
@@ -37,8 +38,9 @@ const displayAllTools = tools => {
                           <p>${tool.published_in}</p>
                           </div>
                        </div>
-                       <div class=" fs-1">
-                       <i class="bi bi-arrow-right-circle"></i>
+                       <div>
+                       
+                       <i type="button" onclick="loadModalData('${tool.id}')" class=" bi bi-arrow-right-circle bg-danger-subtle p-2 rounded text-danger" data-bs-toggle="modal" data-bs-target="#detailsModalLabel"></i>
                        </div>
                   </div>
                   </div>
@@ -47,48 +49,22 @@ const displayAllTools = tools => {
     })
 }
 
-
-
-
-const showModalData = (data)=>{
-    const modalBody=document.getElementById('modal-Body');
-    modalBody.innerHTML =`
-    <div class="w-50 border border-danger-subtle p-3 bg-danger-subtle">
-    <h3 class ="fs-4" id="detailsModalLabel">${data.description}</h3>
-    <div class="d-flex gap-3 mt-3">
-    <div class="border border-secondary-subtle rounded p-2 bg-light text-success">
-    <ul style="list-style:none">
-    <li class="text-center"><h6>${data.pricing[0].price}</h6></li>
-    <li><h5>${data.pricing[0].plan}</h5></li>
-    </ul>
-    </div>
-    
-    <div class="border border-secondary-subtle rounded p-2 bg-light text-danger">
-    <ul style="list-style:none">
-    <li class="text-center"><h6>${data.pricing[1].price}</h6></li>
-    <li><h5>${data.pricing[1].plan}</h5></li>
-    </ul>
-    </div> 
-    
-    <div class="border border-secondary-subtle rounded p-2 bg-light text-danger">
-    <ul style="list-style:none">
-    <li class="text-center"><h6>${data.pricing[2].price}</h6></li>
-    <li><h5>${data.pricing[2].plan}</h5></li>
-    </ul>
-    </div>
-    
-    
-    </div>
-    
-    </div>
-    `;
-    modalBody.appendChild(modalBody);
-}
-loadAllData();
-
-const seeAllData = () => {
-    const url = `https://openapi.programming-hero.com/api/ai/tools`
+const seeAllData = (id) => {
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
         .then(res => res.json())
-        .then(data => displayAllTools(data.data.tools));
-  };
+        .then(data => showModalData(data));
+};
+
+
+
+const showModalData = (data) => {
+    console.log(data)
+
+
+}
+
+
+
+loadAllData();
+
