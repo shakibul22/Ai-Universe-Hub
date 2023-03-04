@@ -89,18 +89,18 @@ const showModalData = (data) => {
     <h4 class=" fs-5" id="detailsModalLabel">${data.description ? data.description : 'No Data Found'}</h4>
     <div class="d-lg-flex gy:sm:2 gap-5 mt-3">
     <div class="border border-secondary-subtle rounded p-2 bg-light text-success text-center">
-    <h6>${data.pricing ? data.pricing[0].price:"No Data Found" }</h6>
-    <h6>${data.pricing ? data.pricing[0].plan : "No Data Found"}</h6>
+    <h6>${data.pricing ? data.pricing[0].price:"Free of cost" }</h6>
+    <h6>${data.pricing ? data.pricing[0].plan : "Free of cost"}</h6>
     </div>
 
     <div class="border border-secondary-subtle rounded p-2 bg-light text-danger text-center">
-    <h6>${data.pricing ? data.pricing[1].price:"No data Found" }</h6>
-    <h6>${data.pricing ? data.pricing[1].plan : "No Data Found"}</h6>
+    <h6>${data.pricing ? data.pricing[1].price:"Free of cost" }</h6>
+    <h6>${data.pricing ? data.pricing[1].plan : "Free of cost"}</h6>
     </div>
     
     <div class="border border-secondary-subtle rounded p-2 bg-light text-danger-emphasis text-center">
-    <h6>${data.pricing ? data.pricing[2].price:"No Data Found" }</h6>
-    <h6>${data.pricing ? data.pricing[2].plan : "No Data Found"}</h6>
+    <h6>${data.pricing ? data.pricing[2].price:"Free of cost" }</h6>
+    <h6>${data.pricing ? data.pricing[2].plan : "Free of cost"}</h6>
     </div>
 
     </div>
@@ -130,6 +130,9 @@ const showModalData = (data) => {
     <div class="mw-50 border border-danger-subtle p-3">
     <img class="img-fluid" src="${data.image_link ? data.image_link[0] : 'No Image Found'}">
 
+    </div>
+    <div class="position-relative">
+    <h6 style="position:absolute; bottom:220px; right:30px;background-color:#fb5200; padding:8px 15px;color:white;border-radius:10px">${data.accuracy.score ? data.accuracy.score : 'No'} Accuracy</h6>
     </div>
     `
 }
