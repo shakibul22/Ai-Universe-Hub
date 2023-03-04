@@ -129,11 +129,14 @@ const showModalData = (data) => {
 
     <div class="mw-50 border border-danger-subtle p-3">
     <img class="img-fluid" src="${data.image_link ? data.image_link[0] : 'No Image Found'}">
-
-    </div>
+    
     <div class="position-relative">
     <h6 style="position:absolute; bottom:220px; right:30px;background-color:#fb5200; padding:8px 15px;color:white;border-radius:10px">${data.accuracy.score ? data.accuracy.score : 'No'} Accuracy</h6>
     </div>
+    
+    <h5 class="text-center  mt-2 fw-bold">${data.input_output_examples ? data.input_output_examples[0].input : 'No Data found'}</h5>
+    <p class="text-center mt-2">${data.input_output_examples ? data.input_output_examples[1].output : 'No Data Found'}</p>
+    </div> 
     `
 }
 isLoading(true)
