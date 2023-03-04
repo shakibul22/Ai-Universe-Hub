@@ -46,7 +46,31 @@ const showData = data => {
                   </div>
         `;
         toolsContainer.appendChild(toolDiv);
-    })
+    });
+    isLoading(false)
+}
+
+const isLoading = (load) => {
+    const loader = document.getElementById('spinner');
+    if (load) {
+        loader.classList.remove('d-none')
+    } else {
+        loader.classList.add('d-none')
+    }
+}
+document.getElementById('showAllCard').addEventListener('click', function () {
+    const url = 'https://openapi.programming-hero.com/api/ai/tools'
+    fetch(url)
+        .then(res => res.json())
+        .then(data => showData(data.data.tools)
+        )
+})
+
+const loadModalData = (id) => {
+    const URL = `https://openapi.programming-hero.com/api/ai/tool/${id}`
+    fetch(URL)
+        .then(res => res.json())
+        .then(data => showModalData(data.data))
 }
 
 const seeAllData = (id) => {
@@ -59,12 +83,31 @@ const seeAllData = (id) => {
 
 
 const showModalData = (data) => {
-    console.log(data)
+    const modalBody = document.getElementById('modalBody');
+    modalBody.innerHTML = `
+    <div class="mw-50 border border-danger-subtle p-3 bg-danger-subtle">
+    <h4 class=" fs-5" id="detailsModalLabel">${data.description ? data.description : 'No Data Found'}</h4>
+    <div class="d-lg-flex gy:sm:2 gap-5 mt-3">
+    <div class="border border-secondary-subtle rounded p-2 bg-light text-success text-center">
+    <h6>${data.pricing ? data.pricing[0].price:"No Data Found" }</h6>
+    <h6>${data.pricing ? data.pricing[0].plan : "No Data Found"}</h6>
+    </div>
 
+    <div class="border border-secondary-subtle rounded p-2 bg-light text-danger text-center">
+    <h6>${data.pricing ? data.pricing[1].price:"No data Found" }</h6>
+    <h6>${data.pricing ? data.pricing[1].plan : "No Data Found"}</h6>
+    </div>
+    
+    <div class="border border-secondary-subtle rounded p-2 bg-light text-danger-emphasis text-center">
+    <h6>${data.pricing ? data.pricing[2].price:"No Data Found" }</h6>
+    <h6>${data.pricing ? data.pricing[2].plan : "No Data Found"}</h6>
+    </div>
 
+    </div>
+
+   
+    `
 }
-
-
-
-loadAllData();
+isLoading(true)
+loadData();
 
