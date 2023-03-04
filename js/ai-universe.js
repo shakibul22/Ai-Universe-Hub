@@ -53,9 +53,9 @@ const showData = data => {
 const isLoading = (load) => {
     const loader = document.getElementById('spinner');
     if (load) {
-        loader.classList.remove('d-none')
+        return loader.classList.remove('d-none')
     } else {
-        loader.classList.add('d-none')
+        return loader.classList.add('d-none')
     }
 }
 document.getElementById('showAllCard').addEventListener('click', function () {
@@ -105,7 +105,29 @@ const showModalData = (data) => {
 
     </div>
 
+    <div class="d-lg-flex gap-5">
+    <div class="mt-4">
+    <h4>Features</h4>
+    <ul>
+    <li>${data.features['1'].feature_name ? data.features[1].feature_name : 'No Data Found'}</li>
+    <li>${data.features['2'].feature_name ? data.features[2].feature_name : 'No Data Found'}</li>
+    <li>${data.features['3'].feature_name ? data.features[3].feature_name : 'No Data Found'}</li>
    
+    </ul>
+    </div>
+    <div class="mt-4">
+    <h4>Integrations</h4>
+    <ul>
+    <li>${data.integrations ? data.integrations[0] : 'No Data Found'}</li>
+    <li>${data.integrations ? data.integrations[1] : 'No Data Found'}</li>
+    <li>${data.integrations ? data.integrations[2] : 'No Data Found'}</li>
+    
+    </ul>
+    </div>
+    </div>
+    </div>
+
+    
     `
 }
 isLoading(true)
