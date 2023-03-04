@@ -127,9 +127,12 @@ const showModalData = (data) => {
     </div>
     </div>
 
-    
+    <div class="mw-50 border border-danger-subtle p-3">
+    <img class="img-fluid" src="${data.image_link ? data.image_link[0] : 'No Image Found'}">
+
+    </div>
     `
 }
 isLoading(true)
-loadData();
+loadAllData();
 
