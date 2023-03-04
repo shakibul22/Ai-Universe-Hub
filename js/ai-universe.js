@@ -58,7 +58,7 @@ const isLoading = (load) => {
         return loader.classList.add('d-none')
     }
 }
-document.getElementById('showAllCard').addEventListener('click', function () {
+document.getElementById('seeAllCard').addEventListener('click', function () {
     const url = 'https://openapi.programming-hero.com/api/ai/tools'
     fetch(url)
         .then(res => res.json())
@@ -81,14 +81,13 @@ const seeAllData = (id) => {
 };
 
 
-
 const showModalData = (data) => {
     const modalBody = document.getElementById('modalBody');
     modalBody.innerHTML = `
     <div class="mw-50 border border-danger-subtle p-3 bg-danger-subtle">
     <h4 class=" fs-5" id="detailsModalLabel">${data.description ? data.description : 'No Data Found'}</h4>
     <div class="d-lg-flex gy:sm:2 gap-5 mt-3">
-    <div class="border border-secondary-subtle rounded p-2 bg-light text-success text-center">
+    <div class="border border-secondary-subtle  rounded p-2 bg-light text-success text-center">
     <h6>${data.pricing ? data.pricing[0].price:"Free of cost" }</h6>
     <h6>${data.pricing ? data.pricing[0].plan : "Free of cost"}</h6>
     </div>
@@ -131,9 +130,9 @@ const showModalData = (data) => {
     <img class="img-fluid" src="${data.image_link ? data.image_link[0] : 'No Image Found'}">
     
     <div class="position-relative">
-    <h6 style="position:absolute; bottom:220px; right:30px;background-color:#fb5200; padding:8px 15px;color:white;border-radius:10px">${data.accuracy.score ? data.accuracy.score : 'No'} Accuracy</h6>
+    <h6 style="position:absolute; bottom:220px; right:30px;background-color:#fb5200; padding:8px 15px;color:white;border-radius:10px">${data.accuracy.score ? data.accuracy.score: 'No'} Accuracy</h6>
     </div>
-    
+
     <h5 class="text-center  mt-2 fw-bold">${data.input_output_examples ? data.input_output_examples[0].input : 'No Data found'}</h5>
     <p class="text-center mt-2">${data.input_output_examples ? data.input_output_examples[1].output : 'No Data Found'}</p>
     </div> 
